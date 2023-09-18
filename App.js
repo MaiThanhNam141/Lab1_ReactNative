@@ -8,6 +8,7 @@ import Lab5 from './src/Lab5';
 import Lab6 from './src/Lab6';
 import Lab7 from './src/Lab7';
 import Lab8 from './src/Lab8';
+import Calyculator from './src/Calyculator'
 
 export default function App() {
   return (
@@ -18,8 +19,9 @@ export default function App() {
       <Lab4 />
       <Lab5 />
       <Lab6 />
-      <Lab7 />*/}
-      <Lab8 />
+      <Lab7 />
+      <Lab8 /> */}
+      <Calyculator></Calyculator>
       <StatusBar style="auto" />
     </View>
   );
