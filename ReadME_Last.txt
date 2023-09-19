@@ -1,0 +1,1 @@
+React native khó quá huhu
