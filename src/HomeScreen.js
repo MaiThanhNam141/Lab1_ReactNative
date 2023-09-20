@@ -3,8 +3,8 @@ import {View, StyleSheet} from "react-native"
 const Homescreen= ({ navigation }) => {
     return (
         <View style={styles.container}>
-            <h1>Home Screen </h1>
-            <Button mode="contained" onPress={() => navigation.navigate('Detail')} >Go to detail</Button>             
+            <Text style={{fontSize:35, paddingLeft:10}}>Home Screen </Text>
+            <Button style={{margin:35}} mode="contained" onPress={() => navigation.navigate('Detail')} >Go to detail</Button>             
         </View>
     )
 }

@@ -44,26 +44,38 @@ import HomeScreen from './src/HomeScreen';
 import Detail from './src/Detail';
 import CustomNavigationBar from './src/CustomNavigationBar';
 import { NavigationContainer } from '@react-navigation/native'; 
-import { createStackNavigator} from '@react-navigation/stack'; 
-import { PaperProvider } from 'react-native-paper';
+import { createStackNavigator } from '@react-navigation/stack'; 
+import { Image, TouchableOpacity } from 'react-native';
+import { Provider as PaperProvider } from 'react-native-paper';
+
 const Stack = createStackNavigator();
-const App=() => {
-return (
-  <PaperProvider>
-    <NavigationContainer>
+
+const App = () => {
+  return (
+    <PaperProvider>
+      <NavigationContainer>
         <Stack.Navigator
           initialRouteName="Home"
-          screenOptions={{
-            header: (props) => <CustomNavigationBar{...props} />,  
-          }}>
-          <Stack.Screen name="Home" component={HomeScreen} />
-          <Stack.Screen name="Detail" component={Detail} /> 
+          screenOptions={({ navigation, route }) => ({
+            title: (props) => <CustomNavigationBar {...props} />,
+            headerLeft: () => {
+              if (route.name !== 'Home') {
+                return (
+                  <TouchableOpacity style={{ paddingLeft: 20 }} onPress={() => navigation.goBack() } >
+                    <Image source={require('./CustomLib/arrowLeft.png')} style={{ width: 24, height: 24}} />
+                  </TouchableOpacity>
+                );
+              } else {
+                return null; // Không hiển thị mũi tên quay lại trên màn hình Home
+              }
+            },
+          })}
+        >
+          <Stack.Screen name="Home" component={HomeScreen}  options={{ title: 'HomeScreen' }}/>
+          <Stack.Screen name="Detail" component={Detail} options={{ title: 'Detail' }}/> 
         </Stack.Navigator>
-    </NavigationContainer>
-  </PaperProvider>
-);}
-
-App.defaultProps = {
-  fallback: 'Em chịu thua',
-};
+      </NavigationContainer>
+    </PaperProvider>
+  );
+}
 export default App;
